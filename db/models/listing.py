@@ -47,7 +47,7 @@ class Listing(Base):
     message_id = Column(Integer, nullable=True)
     created_at = Column(DateTime, default=datetime.now(UTC), nullable=False)
 
-    realtor: Mapped[Realtor] = relationship(
+    realtor: Mapped["Realtor"] = relationship(
         "Realtor",
         back_populates="listings",
     )

@@ -2,7 +2,8 @@ python-dotenv==1.0.1
 python-dotenv==1.0.1
 SQLAlchemy==2.0.38
 asyncpg==0.30.0
-alembic==1.14.1
+alembic[asyncio]==1.13.1
+greenlet==3.2.1
 
 # Dev tools
 black==24.3.0

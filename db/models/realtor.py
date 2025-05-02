@@ -34,7 +34,7 @@ class Realtor(Base):
     date_of_birth = Column(Date, nullable=False)
     created_at = Column(DateTime, default=datetime.now(UTC), nullable=False)
 
-    listings: Mapped[list[Listing]] = relationship(
+    listings: Mapped[list["Listing"]] = relationship(
         "Listing",
         back_populates="realtor",
     )
