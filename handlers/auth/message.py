@@ -8,8 +8,11 @@ from sqlalchemy import select
 from conf import REALTOR_PASSWORD
 from db.base import get_session
 from db.models.realtor import Realtor
-from handlers.auth.button import (add_listing_buttons, register_buttons,
-                                  send_phone_buttons)
+from handlers.auth.button import (
+    add_listing_buttons,
+    register_buttons,
+    send_phone_buttons,
+)
 from handlers.auth.command import auth_router
 from handlers.auth.schema import Register
 
