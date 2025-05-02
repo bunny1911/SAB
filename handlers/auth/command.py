@@ -2,7 +2,7 @@ from aiogram import F, Router
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-from handlers.auth.buttom import auth_buttons
+from handlers.auth.button import auth_buttons
 
 auth_router = Router()
 

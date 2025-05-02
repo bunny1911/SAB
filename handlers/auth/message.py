@@ -8,16 +8,14 @@ from sqlalchemy import select
 from conf import REALTOR_PASSWORD
 from db.base import get_session
 from db.models.realtor import Realtor
-from handlers.auth.buttom import main_kb, contact_kb, register_buttons
+from handlers.auth.button import (add_listing_buttons, register_buttons,
+                                  send_phone_buttons)
 from handlers.auth.command import auth_router
 from handlers.auth.schema import Register
 
 
 @auth_router.callback_query(F.data == "register")
-async def handle_register_click(
-        callback: CallbackQuery,
-        state: FSMContext
-):
+async def handle_register_click(callback: CallbackQuery, state: FSMContext):
     # Set default value
     realtor = None
 
@@ -36,10 +34,7 @@ async def handle_register_click(
 
 
 @auth_router.message(Register.ask_password)
-async def check_password(
-        message: Message,
-        state: FSMContext
-):
+async def check_password(message: Message, state: FSMContext):
     if message.text != REALTOR_PASSWORD:
         await message.answer("❌ Невірний пароль. Спробуйте ще раз:")
         return
@@ -61,18 +56,14 @@ async def ask_phone(message: Message, state: FSMContext):
 
     await message.answer(
         "Введіть номер телефону (у форматі +380...) або натисніть кнопку:",
-        reply_markup=contact_kb
+        reply_markup=send_phone_buttons,
     )
     await state.set_state(Register.ask_phone)
 
 
 @auth_router.message(Register.ask_phone)
 async def ask_birth_date(message: Message, state: FSMContext):
-    phone = (
-        message.contact.phone_number
-        if message.contact
-        else message.text
-    )
+    phone = message.contact.phone_number if message.contact else message.text
 
     await state.update_data(phone_number=phone)
     await message.answer("Введіть дату народження (ДД.ММ.РРРР):")
@@ -103,7 +94,7 @@ async def finish_registration(message: Message, state: FSMContext):
 
     await message.answer(
         "🎉 Реєстрацію завершено. Тепер ви можете додавати оголошення.",
-        reply_markup=main_kb,
+        reply_markup=add_listing_buttons,
     )
     await state.clear()
 
@@ -125,5 +116,7 @@ async def handle_login(callback: CallbackQuery, state: FSMContext):
         )
         return
 
-    await callback.message.answer("✅ Ви увійшли успішно.", reply_markup=main_kb)
+    await callback.message.answer(
+        "✅ Ви увійшли успішно.", reply_markup=add_listing_buttons
+    )
     await state.clear()

@@ -32,7 +32,9 @@ class Realtor(Base):
     last_name = Column(String, nullable=False)
     phone_number = Column(String, nullable=False)
     date_of_birth = Column(Date, nullable=False)
-    created_at = Column(DateTime(timezone=True), default=datetime.now(UTC), nullable=False)
+    created_at = Column(
+        DateTime(timezone=True), default=datetime.now(UTC), nullable=False
+    )
 
     listings: Mapped[list["Listing"]] = relationship(
         "Listing",
