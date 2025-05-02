@@ -4,6 +4,8 @@ SQLAlchemy==2.0.38
 asyncpg==0.30.0
 alembic[asyncio]==1.13.1
 greenlet==3.2.1
+aiogram==3.3.0
+
 
 # Dev tools
 black==24.3.0

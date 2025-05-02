@@ -17,6 +17,11 @@ ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
 # Defined refresh token
 REFRESH_TOKEN_EXPIRE_MINUTES = os.getenv("REFRESH_TOKEN_EXPIRE_MINUTES")
 
+# Defined realtor password
+REALTOR_PASSWORD = os.getenv("REALTOR_PASSWORD")
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
 
 # Defined DB URL
 DATABASE_URL = (
