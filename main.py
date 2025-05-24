@@ -3,15 +3,14 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
-
 from conf import BOT_TOKEN
 from handlers.auth import command as auth_command
 from handlers.base import command as base_command
-from handlers.base.command_menu import commands
+from handlers.base.command import help_commands
 
 
 async def set_bot_commands(bot: Bot):
-    await bot.set_my_commands(commands)
+    await bot.set_my_commands(help_commands)
 
 
 async def main():

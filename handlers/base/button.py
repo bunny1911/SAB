@@ -1,3 +1,5 @@
 from aiogram.types import KeyboardButton
 
-cancel_keyboard = KeyboardButton(text="❌ Вийти", callback_data="cancel")
+# All base single buttons
+exit_button = KeyboardButton(text="❌ Вийти")
+back_button = KeyboardButton(text="Назад")
